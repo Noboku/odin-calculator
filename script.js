@@ -67,6 +67,7 @@ numBtn.forEach((btn) => {
       currentOp.append(btn.innerText);
       num1Arr.push(btn.innerText);
       num1 = Number(num1Arr.join(""));
+      clear.classList.remove("now-clear");
     } else if (lastOp.innerText === "") {
       currentOp.append(btn.innerText);
       num1Arr.push(btn.innerText);
@@ -111,7 +112,7 @@ operationBtn.forEach((btn) => {
 });
 
 equal.addEventListener("click", function () {
-  if (lastOp.textContent.includes("=")) {
+  if (lastOp.textContent.includes("=") || num2 === 0) {
     return;
   } else {
     currentOp.textContent = operate(num1Split[1], num1, num2);

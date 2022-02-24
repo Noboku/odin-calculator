@@ -13,6 +13,7 @@ let num1;
 let num2;
 let num1Split = [];
 let answer;
+let equation;
 
 const add = function (num1 = 0, num2) {
   return num1 + num2;
@@ -36,12 +37,16 @@ const division = function (num1 = 0, num2) {
 
 const operate = function (operator, num1, num2) {
   if (operator === "+") {
+    equation = `${num1} ${operator} ${num2} =`;
     return add(num1, num2);
   } else if (operator === "-") {
+    equation = `${num1} ${operator} ${num2} =`;
     return subtract(num1, num2);
   } else if (operator === "x") {
+    equation = `${num1} ${operator} ${num2} =`;
     return multiply(num1, num2);
   } else if (operator === "÷") {
+    equation = `${num1} ${operator} ${num2} =`;
     return division(num1, num2);
   }
 };
@@ -71,8 +76,6 @@ numBtn.forEach((btn) => {
   });
 });
 
-console.log(num1Arr);
-
 operationBtn.forEach((btn) => {
   btn.addEventListener("click", function () {
     if (lastOp.innerText === "" && currentOp.innerText === "0") {
@@ -80,9 +83,16 @@ operationBtn.forEach((btn) => {
       currentOp.textContent = "";
       num1 = 0;
       clear.classList.remove("now-clear");
-    } else if (lastOp.innerText === "") {
+    } else if (
+      lastOp.innerText === "" &&
+      currentOp.innerText !== "" &&
+      currentOp.innerText !== "0"
+    ) {
       lastOp.textContent = `${num1} ${btn.textContent}`;
       currentOp.textContent = "";
+      clear.classList.remove("now-clear");
+    } else if (lastOp.innerText !== "" && currentOp.innerText === "") {
+      lastOp.textContent = `${num1} ${btn.textContent}`;
       clear.classList.remove("now-clear");
     } else if (lastOp.innerText !== "") {
       num2Arr = [];
@@ -97,7 +107,7 @@ operationBtn.forEach((btn) => {
 
 equal.addEventListener("click", function () {
   currentOp.textContent = operate(num1Split[1], num1, num2);
-  lastOp.textContent = "";
+  lastOp.textContent = equation;
   num1 = answer;
   num2 = 0;
   num2Arr = [];
@@ -128,15 +138,8 @@ clear.addEventListener("click", function () {
   num1 = 0;
   num2 = 0;
   num1Split = [];
+  answer = "";
   currentOp.textContent = num1;
   lastOp.textContent = "";
   clear.classList.remove("now-clear");
 });
-
-// if (currentOp.textContent === "" && lastOp.textContent !== "") {
-//   // lastOp.remove();
-//   const lastOpArr = lastOp.innerText.split("");
-//   lastOpArr.pop();
-//   const lastOpJoin = lastOpArr.join("");
-//   lastOp.textContent = lastOpJoin;
-// }

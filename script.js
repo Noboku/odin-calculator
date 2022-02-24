@@ -62,11 +62,13 @@ body.addEventListener("keydown", (e) => {
     if (e.key === btn.textContent) btn.click();
   });
 
+  console.log(e);
+
   if (e.key === "/") {
     divise.click();
   } else if (e.key === "*") {
     multiplyy.click();
-  } else if (e.key === "Enter" || e.key === "=") {
+  } else if (e.key == "Enter" || e.key === "=") {
     equal.click();
   } else if (e.key === "Backspace") {
     del.click();

@@ -19,6 +19,11 @@ body {
   align-items: center;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .calc {
   background-color: rgb(124, 121, 121);
   display: flex;
@@ -105,9 +110,9 @@ body {
   animation-iteration-count: 3;
 }
 
-.fa-github {
-  font-size: 28px;
-  color: #b8c6db;
+img {
+  height: 28px;
+  max-width: auto;
 }
 
 @keyframes now-clear {
@@ -118,4 +123,11 @@ body {
 }
 
 footer {
+  letter-spacing: 1.5px;
+  font-weight: 300;
+}
+
+.username:hover {
+  color: rgb(56, 56, 56);
+  text-decoration: underline;
 }

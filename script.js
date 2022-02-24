@@ -6,6 +6,10 @@ const clear = document.querySelector("#clear");
 const numBtn = document.querySelectorAll("[data-number]");
 const operationBtn = document.querySelectorAll("[data-operation]");
 const equal = document.querySelector("[data-equals]");
+const body = document.querySelector("body");
+const multiplyy = document.querySelector("#multiply");
+const divise = document.querySelector("#divis");
+
 let operator;
 let num1Arr = [];
 let num2Arr = [];
@@ -51,7 +55,29 @@ const operate = function (operator, num1, num2) {
   }
 };
 
-console.log(operate("+", 5, 5));
+// Keyboard support
+
+body.addEventListener("keydown", (e) => {
+  numBtn.forEach((btn) => {
+    if (e.key === btn.textContent) btn.click();
+  });
+
+  if (e.key === "/") {
+    divise.click();
+  } else if (e.key === "*") {
+    multiplyy.click();
+  } else if (e.key === "Enter" || e.key === "=") {
+    equal.click();
+  } else if (e.key === "Backspace") {
+    del.click();
+  } else if (e.key === "Escape") {
+    clear.click();
+  }
+
+  operationBtn.forEach((btn) => {
+    if (e.key === btn.textContent) btn.click();
+  });
+});
 
 numBtn.forEach((btn) => {
   btn.addEventListener("click", function () {

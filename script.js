@@ -57,8 +57,13 @@ numBtn.forEach((btn) => {
   btn.addEventListener("click", function () {
     if (btn.textContent === "." && currentOp.textContent.includes(".")) {
       return;
-    } else if (currentOp.innerText === "0") {
+    } else if (
+      currentOp.innerText === "0" ||
+      lastOp.innerText.split("").pop() === "="
+    ) {
       currentOp.textContent = "";
+      lastOp.textContent = "";
+      num1Arr = [];
       currentOp.append(btn.innerText);
       num1Arr.push(btn.innerText);
       num1 = Number(num1Arr.join(""));
@@ -106,12 +111,16 @@ operationBtn.forEach((btn) => {
 });
 
 equal.addEventListener("click", function () {
-  currentOp.textContent = operate(num1Split[1], num1, num2);
-  lastOp.textContent = equation;
-  num1 = answer;
-  num2 = 0;
-  num2Arr = [];
-  clear.classList.add("now-clear");
+  if (lastOp.textContent.includes("=")) {
+    return;
+  } else {
+    currentOp.textContent = operate(num1Split[1], num1, num2);
+    lastOp.textContent = equation;
+    num1 = answer;
+    num2 = 0;
+    num2Arr = [];
+    clear.classList.add("now-clear");
+  }
 });
 
 del.addEventListener("click", function () {
